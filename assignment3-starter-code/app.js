@@ -11,7 +11,7 @@ NarrowItDownController .$inject = ['MenuSearchService'];
 function NarrowItDownController( MenuSearchService) {
   var nidCtrl = this;
   nidCtrl.searchTerm = "";
-  nidCtrl.found = [];
+  nidCtrl.found;
 
   nidCtrl.getItems = function(){
     nidCtrl.found = MenuSearchService.getMatchedMenuItems(nidCtrl.searchTerm);
@@ -34,25 +34,27 @@ function MenuSearchService($http) {
   service.getMatchedMenuItems = function(searchTerm){
     matchedItems = [];
 
-    var response = $http({
-      method: "GET",
-      url: ("https://davids-restaurant.herokuapp.com/menu_items.json")})
-      .then(function (response){
-        for(let i in response.data.menu_items)
-        {
-          if(response.data.menu_items[i].description.toLowerCase().includes(searchTerm))
-            {
-              matchedItems.push(response.data.menu_items[i]);
-            }
-        }
+    if(searchTerm !== "")
+    {
+      var response = $http({
+        method: "GET",
+        url: ("https://davids-restaurant.herokuapp.com/menu_items.json")})
+        .then(function (response){
+          for(let i in response.data.menu_items)
+          {
+            if(response.data.menu_items[i].description.toLowerCase().includes(searchTerm))
+              {
+                matchedItems.push(response.data.menu_items[i]);
+              }
+          }
 
 
-      }).catch(function (error) {
+        }).catch(function (error) {
 
-      console.log("Error while retrieving the data.");
+        console.log("Error while retrieving the data.");
 
-    });
-
+      });
+    }
     return matchedItems;
   };
 
