@@ -1,0 +1,14 @@
+<h1>MY INFO</h1> <br>
+<div id="info" ng-if="myinfoCtrl.userview">
+{{myinfoCtrl.user.name}} <br>
+{{myinfoCtrl.user.surname}} <br>
+{{myinfoCtrl.user.email}} <br>
+{{myinfoCtrl.user.phone}} <br>
+{{myinfoCtrl.user.menunumber}} <br>
+
+<div class="item-tile">
+  <img width="200" height="200" ng-src="images/menu/{{myinfoCtrl.imagestring}}/{{myinfoCtrl.imagestring}}.jpg">
+</div>
+</div>
+
+<button type="button" name="button" ng-hide="myinfoCtrl.userview" ui-sref="public.signup">GO TO SIGN UP !!!</button>

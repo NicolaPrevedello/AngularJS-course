@@ -1,0 +1,56 @@
+<fieldset>
+    <legend>SUBSCRIBE TO THE NEWSLETTER</legend>
+    <form name='regForm' novalidate>
+
+      <input type="text" name="name" placeholder="Pick a name"
+        ng-model="signCtrl.user.name"
+        required
+        minlength="4"
+        ng-maxlength="10">
+        {{ reg.user.name }}
+        <br>
+
+        <input type="text" name="surname" placeholder="Pick a surname"
+          ng-model="signCtrl.user.surname"
+          required
+          minlength="4"
+          ng-maxlength="10">
+          {{ reg.user.surname }}
+          <br>
+
+      <input type="email" name="email" placeholder="Email"
+        ng-model="signCtrl.user.email"
+        required>
+        <span ng-if="regForm.email.$invalid && regForm.email.$touched">
+          Must be a valid email address: handle@domain format
+        </span>
+        <br>
+
+      <input type="text" name="phone" placeholder="Phone ###-###-####"
+        ng-model="signCtrl.user.phone"
+        pattern="(\d{3})-(\d{3})-(\d{4})">
+        <span ng-if="regForm.phone.$invalid && regForm.phone.$touched">
+          Phone must be in the format ###-###-####.
+        </span>
+        <br>
+
+        <input type="text" name="menunumber" placeholder="Pick a menu-number"
+          ng-model="signCtrl.user.menunumber"
+          required>
+          {{ reg.user.menunumber }}
+          <br>
+
+      <button
+        ng-disabled="regForm.$invalid"
+        ng-click="signCtrl.submit()">Submit</button>
+
+        <div style="margin-top: 10px;">
+          Form valid? {{ regForm.$valid }} <br>
+          !!! PLEASE TRY WITH MENU-NUMBER A1 I DONT HAVE FOUND THE OTHER IMAGES !!!
+        </div>
+    </form>
+  </fieldset>
+
+  <div id="info" ng-if="signCtrl.completed">
+  SIGN UP COMPLETED SUCCESSFULLY!!!
+</div>
