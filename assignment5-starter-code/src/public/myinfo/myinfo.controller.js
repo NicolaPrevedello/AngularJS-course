@@ -4,10 +4,12 @@
 angular.module('public')
 .controller('MyInfoController', MyInfoController);
 
-MyInfoController.$inject = ['user'];
-function MyInfoController(user) {
+MyInfoController.$inject = ['user', 'ApiPath'];
+function MyInfoController(user, ApiPath) {
 
   var ctrl = this;
+  ctrl.basePath = ApiPath;
+
   ctrl.user = user;
   ctrl.userview = false;
   ctrl.imagestring = null;
